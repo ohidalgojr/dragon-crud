@@ -1,15 +1,16 @@
-import './App.css';
+import { Route } from "react-router";
+import "./App.css";
 
-function App() {
+import Routes from "./routes";
+import { Menu } from "./components";
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Hello, there!
-        </p>
-      </header>
+      <Menu />
+      <Routes />
     </div>
   );
-}
+};
 
 export default App;
