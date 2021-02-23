@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 import api from "../../services/api";
 import { NavLink } from "react-router-dom";
-import { Button, Alert } from "../../components";
-
-import { DragonForm } from "../../components";
+import { Button, Alert, DragonForm } from "../../components";
+import { IDLE, FINISHED, ERROR } from "../../consts/applicationStatus";
 import "./CreateDragon.scss";
 
 const CreateDragon = () => {
   const [dragon, setDragon] = useState();
+  const [status, setStatus] = useState(IDLE);
 
   const handleSubmit = (dragon) => {
     if (!dragon.name || !dragon.type) {
+      setStatus(ERROR);
       return;
     }
     api
       .post("dragon", dragon)
-      .then((response) => setDragon(response.data))
+      .then((response) => {
+        setStatus(FINISHED);
+        setDragon(response.data);
+      })
       .catch((error) => console.log(error));
   };
 
   return (
     <div className="create">
-      {dragon && (
+      {status === ERROR && (
+        <Alert className="error create-alert">
+          {"Preencha todos os campos."}
+        </Alert>
+      )}
+
+      {status === FINISHED && (
         <Alert className="success create-alert">
           {"Dragão criado com Sucesso! Clique em visualizar."}
         </Alert>
       )}
+
       <div className="create-content">
         <h2>Novo Dragão</h2>
         <DragonForm className="create-form" onSubmit={handleSubmit} />
