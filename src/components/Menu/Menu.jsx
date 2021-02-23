@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
+import { logout } from "../../services/auth";
 import { MenuItem } from "../../components";
-import { ReactComponent as FaBars } from "../../assets/bars.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import faBars from "@fortawesome/fontawesome-free-solid/faBars";
 import "./Menu.scss";
 
 const Menu = () => {
@@ -14,13 +17,23 @@ const Menu = () => {
   return (
     <div className={`menu ${menuClass}`}>
       <div className="menu-left">
-        <MenuItem text="View Dragons" />
-        <MenuItem text="Create Dragon" />
+        <NavLink to="/dragons" exact>
+          <MenuItem text="Dragões" />
+        </NavLink>
+        <NavLink to="/create" exact>
+          <MenuItem text="Cadastrar" />
+        </NavLink>
       </div>
       <div className="menu-right">
-        <MenuItem text="Logout" />
+        <NavLink onClick={() => logout()} to="/" exact>
+          <MenuItem text="Logout" />
+        </NavLink>
       </div>
-      <FaBars onClick={() => handleToggle()} className="menu-icon" />
+      <FontAwesomeIcon
+        icon={faBars}
+        onClick={() => handleToggle()}
+        className="menu-icon"
+      />
       <div className="clear-fix" />
     </div>
   );

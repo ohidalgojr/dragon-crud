@@ -1,0 +1,15 @@
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  &-form {
+    width: 260px;
+    background-color: #f6f8fa;
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    padding: 20px;
+  }
+}

@@ -1,8 +1,14 @@
 import React from "react";
 
+import "./Button.scss";
+
 const Button = (props) => {
   return (
-    <button type={props.type} onClick={props.onClick}>
+    <button
+      className={`button ${props.className}`}
+      type={props.type}
+      onClick={props.onClick}
+    >
       {props.placeholder}
     </button>
   );

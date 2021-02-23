@@ -5,7 +5,6 @@ import {
   IDLE,
   FINISHED,
   LOADING,
-  ERROR,
   EDITING,
 } from "../../consts/applicationStatus";
 import { DragonTable, Modal, DragonForm } from "../../components";
@@ -26,11 +25,16 @@ const Dragons = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  useEffect(() => {
+    handleDragons(dragons);
+  }, [dragons]);
+
   const handleDelete = (dragonId) => {
     api
       .delete(`dragon/${dragonId}`)
       .then(() => {
-        setDragons(dragons.filter((dragon) => dragon.id !== dragonId));
+        const data = dragons.filter((dragon) => dragon.id !== dragonId);
+        setDragons(data);
       })
       .catch((error) => console.log(error));
   };
@@ -45,18 +49,22 @@ const Dragons = () => {
     api
       .put(`dragon/${id}`, updatedDragon)
       .then(() => {
-        setDragons(
-          dragons.map((dragon) =>
-            dragon.id === updatedDragon.id ? updatedDragon : dragon
-          )
+        const data = dragons.map((dragon) =>
+          dragon.id === updatedDragon.id ? updatedDragon : dragon
         );
+        setDragons(data);
         setStatus(FINISHED);
       })
       .catch((error) => console.log(error));
   };
 
+  const handleDragons = (data) => {
+    const sorted = data.sort((a, b) => a.name.localeCompare(b.name));
+    setDragons(sorted);
+  };
+
   return (
-    <div>
+    <>
       {status === EDITING && (
         <Modal>
           <DragonForm
@@ -69,11 +77,12 @@ const Dragons = () => {
       )}
 
       <DragonTable
+        className={"dragon-table"}
         dragons={dragons}
         onDelete={handleDelete}
         onEdit={handleModal}
       />
-    </div>
+    </>
   );
 };
 

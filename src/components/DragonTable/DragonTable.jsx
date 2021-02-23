@@ -1,18 +1,22 @@
 import React from "react";
+import moment from "moment";
 
 import { Button } from "..";
-import { FINISHED } from "../../consts/applicationStatus";
+
+import "./DragonTable.scss";
 
 const DragonTable = (props) => {
+  moment.locale("pt-br");
+
   return (
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Created At</th>
-          <th>Actions</th>
+          <th>Nome</th>
+          <th>Tipo</th>
+          <th>Criado Em</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -21,13 +25,15 @@ const DragonTable = (props) => {
             <td>{dragon.id}</td>
             <td>{dragon.name}</td>
             <td>{dragon.type}</td>
-            <td>{dragon.createdAt}</td>
+            <td>{moment(dragon.createdAt).format("DD-MM-YYYY")}</td>
             <td>
               <Button
+                className={"button-primary"}
                 placeholder={"Edit"}
                 onClick={() => props.onEdit(dragon)}
               />
               <Button
+                className={"button-dark"}
                 placeholder={"Delete"}
                 onClick={() => props.onDelete(dragon.id)}
               />

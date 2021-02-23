@@ -1,0 +1,16 @@
+table {
+  display: block;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+td,
+th {
+  text-align: left;
+  padding: 4px;
+}
+
+th,
+td {
+  border-bottom: 1px solid #cdcdcd;
+}

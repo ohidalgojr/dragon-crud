@@ -19,10 +19,15 @@ const LoginForm = (props) => {
     setUser({ username: "", password: "" });
   };
 
+  const register = () => {
+    props.onRegister(user);
+    setUser({ username: "", password: "" });
+  };
+
   return (
-    <form onSubmit={submit} className="login-form">
+    <form onSubmit={submit} className={`form ${props.className}`}>
       <label>
-        Username:
+        Usuário
         <input
           type="text"
           name="username"
@@ -32,7 +37,7 @@ const LoginForm = (props) => {
         />
       </label>
       <label>
-        Password:
+        Senha
         <input
           type="password"
           name="password"
@@ -41,7 +46,20 @@ const LoginForm = (props) => {
           onChange={handleChange}
         />
       </label>
-      <Button type="submit" placeholder={"Login"} />
+      <div className="form-action">
+        <Button
+          className="button-primary"
+          type="submit"
+          placeholder={"Logar"}
+        />
+        <hr />
+        <Button
+          className="button-dark"
+          type="button"
+          placeholder={"Registrar"}
+          onClick={register}
+        />
+      </div>
     </form>
   );
 };
