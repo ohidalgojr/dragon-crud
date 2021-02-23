@@ -1,0 +1,19 @@
+.form__dragon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    margin-top: 10px;
+    width: 80%;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  label {
+    width: 80%;
+  }
+}

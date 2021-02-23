@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import moment from "moment";
 
 import { Button } from "..";
@@ -23,18 +24,22 @@ const DragonTable = (props) => {
         {props.dragons.map((dragon) => (
           <tr key={dragon.id}>
             <td>{dragon.id}</td>
-            <td>{dragon.name}</td>
+            <td>
+              <NavLink to={`dragon/${dragon.id}`} exact>
+                {dragon.name}
+              </NavLink>
+            </td>
             <td>{dragon.type}</td>
             <td>{moment(dragon.createdAt).format("DD-MM-YYYY")}</td>
             <td>
               <Button
                 className={"button-primary"}
-                placeholder={"Edit"}
+                placeholder={"Editar"}
                 onClick={() => props.onEdit(dragon)}
               />
               <Button
                 className={"button-dark"}
-                placeholder={"Delete"}
+                placeholder={"Deletar"}
                 onClick={() => props.onDelete(dragon.id)}
               />
             </td>

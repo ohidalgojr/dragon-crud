@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 import api from "../../services/api";
 import {
@@ -7,7 +8,9 @@ import {
   LOADING,
   EDITING,
 } from "../../consts/applicationStatus";
-import { DragonTable, Modal, DragonForm } from "../../components";
+import { DragonTable, Modal, DragonForm, Button } from "../../components";
+
+import "./Dragons.scss";
 
 const Dragons = () => {
   const [dragons, setDragons] = useState([]);
@@ -30,6 +33,7 @@ const Dragons = () => {
   }, [dragons]);
 
   const handleDelete = (dragonId) => {
+    if (status === EDITING) return;
     api
       .delete(`dragon/${dragonId}`)
       .then(() => {
@@ -45,6 +49,9 @@ const Dragons = () => {
   };
 
   const handleEdit = (updatedDragon) => {
+    if (isInvalidDragon(updatedDragon)) {
+      return;
+    }
     const { id } = updatedDragon;
     api
       .put(`dragon/${id}`, updatedDragon)
@@ -63,8 +70,20 @@ const Dragons = () => {
     setDragons(sorted);
   };
 
+  const isInvalidDragon = (updatedDragon) => {
+    const { name, type } = updatedDragon;
+    if (!name || !type) {
+      return true;
+    }
+    return false;
+  };
+
   return (
-    <>
+    <div className="dragons">
+      <NavLink to="/create" exact>
+        <Button className="button-primary" type="button" placeholder="Novo" />
+      </NavLink>
+
       {status === EDITING && (
         <Modal>
           <DragonForm
@@ -77,12 +96,12 @@ const Dragons = () => {
       )}
 
       <DragonTable
-        className={"dragon-table"}
+        className={"dragons-table"}
         dragons={dragons}
         onDelete={handleDelete}
         onEdit={handleModal}
       />
-    </>
+    </div>
   );
 };
 

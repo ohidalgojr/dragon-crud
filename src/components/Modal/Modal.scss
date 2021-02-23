@@ -5,11 +5,12 @@
   top: 50%;
   transform: translate(-50%, -50%);
   bottom: 10%;
+  min-width: 320px;
 
   &-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #cdcdcd;
   }
 }

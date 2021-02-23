@@ -25,7 +25,7 @@ const LoginForm = (props) => {
   };
 
   return (
-    <form onSubmit={submit} className={`form ${props.className}`}>
+    <form onSubmit={submit} className={`form__login ${props.className}`}>
       <label>
         Usuário
         <input
@@ -46,7 +46,7 @@ const LoginForm = (props) => {
           onChange={handleChange}
         />
       </label>
-      <div className="form-action">
+      <div className="form__login-action">
         <Button
           className="button-primary"
           type="submit"

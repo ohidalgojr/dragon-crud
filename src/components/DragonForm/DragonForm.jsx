@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Button } from "../";
+import "./DragonForm.scss";
 
 const DragonForm = (props) => {
   const initialState = props.editing
@@ -20,9 +21,9 @@ const DragonForm = (props) => {
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={submit} className={`form__dragon ${props.className}`}>
       <label>
-        Name:
+        Nome
         <input
           type="text"
           name="name"
@@ -32,7 +33,7 @@ const DragonForm = (props) => {
         />
       </label>
       <label>
-        Type:
+        Tipo
         <input
           type="text"
           name="type"
@@ -41,10 +42,19 @@ const DragonForm = (props) => {
           onChange={handleChange}
         />
       </label>
-      <Button type="submit" placeholder={props.editing ? "Save" : "Create"} />
+      <Button
+        className="button-primary"
+        type="submit"
+        placeholder={props.editing ? "Salvar" : "Cadastrar"}
+      />
 
       {props.editing && (
-        <Button type="button" placeholder={"Close"} onClick={props.onCancel} />
+        <Button
+          className="button-secondary"
+          type="button"
+          placeholder={"Fechar"}
+          onClick={props.onCancel}
+        />
       )}
     </form>
   );

@@ -1,0 +1,26 @@
+.view {
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f6f8fa;
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    min-width: 300px;
+    min-height: 300px;
+
+    img {
+      width: 160px;
+      height: 200px;
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    button {
+      margin: 20px 0 20px 0;
+    }
+  }
+}

@@ -48,7 +48,7 @@ const Login = () => {
   return (
     <div className="login">
       {isAuthenticated && <Redirect to={{ pathname: "/dragons" }} />}
-      {status === ERROR && <Alert>{errorMessage}</Alert>}
+      {status === ERROR && <Alert className="error">{errorMessage}</Alert>}
       <LoginForm
         className="login-form"
         onSubmit={handleSubmit}
