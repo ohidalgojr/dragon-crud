@@ -23,7 +23,7 @@ const CreateDragon = () => {
     <div className="create">
       {dragon && (
         <Alert className="success create-alert">
-          {"Dragão Criado com Sucesso! Clique em visualizar."}
+          {"Dragão criado com Sucesso! Clique em visualizar."}
         </Alert>
       )}
       <div className="create-content">
